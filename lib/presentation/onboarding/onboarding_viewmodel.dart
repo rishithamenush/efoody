@@ -1,12 +1,12 @@
 import 'dart:async';
 
 import '../../domain/model.dart';
+import '../base/baseviewmodel.dart';
 import '../resources/assets_manager.dart';
 import '../resources/strings_manager.dart';
 
-class OnBoardingViewModel extends BaseViewModel
-    with OnBoardingViewModelInputs, OnBoardingViewModelOutputs {
-  final StreamController _streamController = StreamController<SliderViewObject>();
+class OnBoardingViewModel extends BaseViewModel {
+  final StreamController<SliderViewObject> _streamController = StreamController<SliderViewObject>();
   late final List<SliderObject> _list;
   int _currentIndex = 0;
 
@@ -22,9 +22,12 @@ class OnBoardingViewModel extends BaseViewModel
   }
 
   @override
-  void goNext() {
-    _currentIndex = (_currentIndex + 1) % _list.length;
-    _postDataToView();
+  int goNext(){
+    int nextIndex = _currentIndex++;
+    if(nextIndex >= _list.length){
+      _currentIndex = 0;
+    }
+    return _currentIndex;
   }
 
   @override
