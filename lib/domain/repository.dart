@@ -6,5 +6,5 @@ import '../data/request/request.dart';
 import '../data/responses/responses.dart';
 
 abstract class Repository{
-  Future<Either<Failure, Authentication>> login (LoginRequest lgoinRequest);
+  Future<Either<Failure, Authentication>> login (LoginRequest loginRequest);
 }
