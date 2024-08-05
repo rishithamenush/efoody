@@ -1,8 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
+
 part 'responses.g.dart';
 
 @JsonSerializable()
-class BaseResponse{
+class BaseResponse {
   @JsonKey(name: "status")
   int? status;
   @JsonKey(name: "message")
@@ -10,54 +11,56 @@ class BaseResponse{
 }
 
 @JsonSerializable()
-class CustomerResponse{
+class CustomerResponse {
   @JsonKey(name: "id")
   String? id;
-
   @JsonKey(name: "name")
   String? name;
-
   @JsonKey(name: "numOfNotifications")
-  String? numOfNotifications;
+  int? numOfNotifications;
 
-  CustomerResponse(this.id,this.name,this.numOfNotifications);
+  CustomerResponse(this.id, this.name, this.numOfNotifications);
 
-  //from json
-  factory CustomerResponse.fromJson(Map<String,dynamic> json) => _$CustomerResponseFromJson(json);
+// from json
+  factory CustomerResponse.fromJson(Map<String, dynamic> json) =>
+      _$CustomerResponseFromJson(json);
 
-  // to json
+// to json
   Map<String, dynamic> toJson() => _$CustomerResponseToJson(this);
-
 }
 
 @JsonSerializable()
-class ContactResponse{
+class ContactsResponse {
   @JsonKey(name: "email")
   String? email;
   @JsonKey(name: "phone")
   String? phone;
   @JsonKey(name: "link")
-  int? link;
+  String? link;
 
-  ContactResponse(this.email, this.phone, this.link);
-  //from json
-  factory ContactResponse.fromJson(Map<String,dynamic> json) => _$ContactResponseFromJson(json);
+  ContactsResponse(this.email, this.phone, this.link);
 
-  // to json
-  Map<String, dynamic> toJson() => _$ContactResponseToJson(this);
+// from json
+  factory ContactsResponse.fromJson(Map<String, dynamic> json) =>
+      _$ContactsResponseFromJson(json);
+
+// to json
+  Map<String, dynamic> toJson() => _$ContactsResponseToJson(this);
 }
 
 @JsonSerializable()
-class AuthenticationResponse extends BaseResponse{
+class AuthenticationResponse extends BaseResponse {
   @JsonKey(name: "customer")
   CustomerResponse? customer;
-  @JsonKey(name: "contact")
-  ContactResponse? contact;
+  @JsonKey(name: "contacts")
+  ContactsResponse? contacts;
 
-  AuthenticationResponse(this.customer, this.contact);
-  //from json
-  factory AuthenticationResponse.fromJson(Map<String,dynamic> json) => _$AuthenticationResponseFromJson(json);
+  AuthenticationResponse(this.customer, this.contacts);
 
-  // to json
+// from json
+  factory AuthenticationResponse.fromJson(Map<String, dynamic> json) =>
+      _$AuthenticationResponseFromJson(json);
+
+// to json
   Map<String, dynamic> toJson() => _$AuthenticationResponseToJson(this);
 }

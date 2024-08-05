@@ -1,10 +1,12 @@
 
 // extension on String
 
-extension NonNUllString on String?{
+import 'package:efoody/data/mapper/mapper.dart';
+
+extension NonNUllString on String? {
   String orEmpty(){
     if(this == null){
-      return "";
+      return EMPTY;
     }
     else{
       return this!;
@@ -15,10 +17,10 @@ extension NonNUllString on String?{
 
 // extension on Integer
 
-extension NonNUllInteger on int?{
-  int orZero(){
+extension NonNUllInteger on int? {
+  int orZero() {
     if(this == null){
-      return 0;
+      return ZERO;
     }
     else{
       return this!;
